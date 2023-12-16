@@ -132,7 +132,7 @@ app.delete('/examination/:examination_ID', (req, res) => {
     if (err) {
       res.status(500).send({ error: err });
     } else {
-      res.send({ message: 'patient deleted successfully' });
+      res.send({ message: 'examination deleted successfully' });
     }
   });
 });

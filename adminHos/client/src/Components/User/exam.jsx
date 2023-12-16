@@ -79,17 +79,31 @@ const Exam = () => {
   };
 
   const columns = [
-    { field: 'examination_ID', headerName: 'Examination ID', width: 150 },
+    { field: 'examination_ID', headerName: 'ID', width: 50 },
     { field: 'paitent', headerName: 'Patient', width: 150 },
     { field: 'doctor', headerName: 'Doctor', width: 150 },
     { field: 'symptom', headerName: 'Symptom', width: 150 },
+    {
+      field: 'delete',
+      headerName: '',
+      sortable: false,
+      width: 50,
+      disableClickEventBubbling: true,
+      renderCell: (params) => {
+        const onClick = () => {
+          const idToDelete = params.row.doctor_ID;
+          deleteRow(idToDelete);
+        };
+        return <FaBan onClick={onClick} />;
+      },
+    }
   ];
 
   return (
     <div>
       <input
         type="text"
-        placeholder="Search Doctors"
+        placeholder="Search Doctor"
         value={searchDoctorValue}
         onChange={(e) => setSearchDoctorValue(e.target.value)}
       />
@@ -103,7 +117,7 @@ const Exam = () => {
       ))}
       <input
         type="text"
-        placeholder="Search Patients"
+        placeholder="Search Patient"
         value={searchPatientValue}
         onChange={(e) => setSearchPatientValue(e.target.value)}
       />

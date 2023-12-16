@@ -21,7 +21,7 @@ const Sidebar = ({children}) => {
         },
         {
             path:"/patient",
-            name:"Patients",
+            name:"Patient",
             icon:<FaUserAlt />
             
         } ,
