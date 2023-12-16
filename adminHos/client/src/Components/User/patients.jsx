@@ -42,7 +42,7 @@ export default function Patients() {
     { field: 'patient_ID', headerName: 'ID', width: 100 },
     { field: 'name', headerName: 'Name', width: 400 },
     { field: 'gender', headerName: 'Gender', width: 150 },
-    { field: 'email', headerName: 'Email', width: 450 },
+    { field: 'email', headerName: 'Email', width: 350 },
     { field: 'DOB', headerName: 'Date of Birth', width: 100 },
     {
       field: 'delete',

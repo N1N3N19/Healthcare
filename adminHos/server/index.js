@@ -124,19 +124,6 @@ app.delete('/patients/:patient_ID', (req, res) => {
   });
 });
 
-app.post('/exam', (req, res) => {
-  const { patient, doctor} = req.body; 
-  db.query('INSERT INTO examination (patient, doctor VALUES (?, ? )', [patient, doctor], (err, result) => {
-    if (err) {
-      console.error('Error inserting data:', err);
-      res.status(500).send('Error inserting data into the table');
-    } else {
-      console.log('Data inserted successfully');
-      res.status(200).send('Data inserted successfully');
-    }
-  });
-});
-
 app.delete('/examination/:examination_ID', (req, res) => {
   const query = "DELETE FROM examination WHERE examination_ID = ?";
   const examination_ID = req.params.examination_ID;
@@ -154,6 +141,58 @@ app.get('/getexamination', (req, res) => {
   const query = 'SELECT * FROM examination';
 
   db.query(query, (err, result) => {
+    if (err) {
+      res.status(500).send({ error: err });
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.post('/matchdoctorandpatient', (req, res) => {
+  const { patientId,doctorId } = req.body;
+  const query = 'INSERT INTO examination (paitent, doctor) VALUES (?, ?)';
+
+  db.query(query, [patientId, doctorId], (err, result) => {
+    if (err) {
+      res.status(500).send({ error: err });
+    } else {
+      res.status(200).send({ message: 'Doctor and patient matched successfully' });
+    }
+  });
+});
+
+app.get('/getdoctor/:id', (req, res) => {
+  const { id } = req.params;
+  const query = 'SELECT * FROM doctor WHERE doctor_ID = ?';
+
+  db.query(query, [id], (err, result) => {
+    if (err) {
+      res.status(500).send({ error: err });
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get('/getpatients/:id', (req, res) => {
+  const { id } = req.params;
+  const query = 'SELECT * FROM patients WHERE patient_ID = ?';
+
+  db.query(query, [id], (err, result) => {
+    if (err) {
+      res.status(500).send({ error: err });
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get('/getexamination', (req, res) => {
+  const { id } = req.params;
+  const query = 'SELECT * FROM examination WHERE examination_ID = ?';
+
+  db.query(query, [id], (err, result) => {
     if (err) {
       res.status(500).send({ error: err });
     } else {
