@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import neo4j from 'neo4j-driver';
 
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const driver = neo4j.driver('bolt://localhost:7687', neo4j.auth.basic('neo4j', '12345678'));
 
@@ -19,6 +21,7 @@ function  Regis() {
     const [City, setCity] = useState([]);
     const [Occupation, setOccupation] = useState([]);
     const [password, setPassword] = useState([]);   
+    const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
     useEffect(() => {
         const fetchSymptoms = async () => {
@@ -94,18 +97,22 @@ function  Regis() {
         console.log(e.target.value);
     }
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const session = driver.session();
-        const dataSymptomp = { patient_ID: IDNumber , symptom_ID: selectedSymptomID };
+        // const dataSymptomp = { patient_ID: IDNumber , symptom_ID: selectedSymptomID };
         const dataTosend = { patient_ID: IDNumber, name: FullName, DOB, email: Email, gender: Gender, phone: MobileNumber, city: City, occupation: Occupation, password};
-        console.log(dataTosend, dataSymptomp);
-    
+        // console.log(dataTosend, dataSymptomp);
+        
         try {
             const response1 = await axios.post('http://localhost:5001/api/Registration', dataTosend);
-            const response2 = await axios.post('http://localhost:5001/api/sym', dataSymptomp);
+            // const response2 = await axios.post('http://localhost:5001/api/sym', dataSymptomp);
             console.log(response1);
-            console.log(response2);
+            // console.log(response2);
+            setCookie('patient_ID', IDNumber);
+            navigate('/patientSymptom');
         } catch (error) {
             console.error(error.message);
           }
@@ -171,24 +178,12 @@ return (
                        
                         
                         <div style={{ display: 'flex', flexWrap: 'wrap' } }>
-                        <label >Symptoms:   </label>
-                        <br/>
-                            {symptomData.map((item, index) => (
-                                <div key={index} style={{ marginLeft: '10px', marginRight: '15px', marginBottom: '10px' }}>
-                                <input
-                                    type="checkbox"
-                                    id={`checkbox${index}`}
-                                    name="symptom"
-                                    value={item.value}
-                                    onChange={handleSymptomChange}
-                                />
-                                <label htmlFor={`checkbox${index}`}>{item.label}</label>
-                                </div>
-                            ))}
+                        <label >_________   </label>
+                        
                             
                         </div>
                             <div >
-                            <button type="submit" onSubmit={handleSubmit} >Submit</button>
+                            <button type="submit" onSubmit={handleSubmit} >Next</button>
                             </div>                 
                  
                         

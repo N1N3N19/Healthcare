@@ -7,7 +7,8 @@
     font-family: 'Poppins', sans-serif;
 }
 body{
-    min-height: 100vh;
+    min-height: 150vh;
+    overflow: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,6 +16,7 @@ body{
 }
 .container{
     position: relative;
+    overflow: auto;
     right: 500px;
     max-width: 1400px;
     width: 1300%;
@@ -24,6 +26,62 @@ body{
     margin:  15px;
     background-color: #fff;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+.container2{
+    position: relative;
+    overflow: auto;
+    height: 150vh; /* Adjust this value as needed */
+    max-width: 1400px;
+    width: 1000%;
+    height: 900px;
+    border-radius: 6px;
+    padding: 30px;
+    margin:  15px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+.container3{
+    position: center;
+    overflow: auto;
+    height: 150vh; /* Adjust this value as needed */
+    max-width: 1200px;
+    width: 400%;
+    height: 900px;
+    border-radius: 6px;
+    padding: 30px;
+    margin:  15px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    transform: translatex(-170px);
+}
+.container4{
+    position: center;
+    overflow: auto;
+    height: 150vh; /* Adjust this value as needed */
+    max-width: 1200px;
+    width: 400%;
+    height: 900px;
+    border-radius: 6px;
+    padding: 30px;
+    margin:  15px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    transform: translatex(-350px);
+}
+
+.container5{
+    position: center;
+    overflow: auto;
+    height: 100vh; /* Adjust this value as needed */
+    max-width: 700px;
+    width: 400%;
+    height: 800px;
+    border-radius: 6px;
+    padding: 30px;
+    margin:  15px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    transform: translatex(-20px);
 }
 .container header{
     position: relative;
@@ -79,6 +137,12 @@ form.secActive .form.first{
 .container form .fields{
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.container form .select{
+    display: flex;
+    align-items: left;
     justify-content: space-between;
     flex-wrap: wrap;
 }
