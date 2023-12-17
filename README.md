@@ -12,7 +12,7 @@ we need 2 terminal to runserver of front and back
 - to run back type this in a terminal: 
 	- cd Backend
  	- npm run dev 
-> Make sure that both of your localhost has start the server before run back
+> Make sure that both of your localhost has run the server before run backend
 
 - to run front type this in another terminal:
   - cd Frontend
